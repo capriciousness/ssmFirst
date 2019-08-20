@@ -3,6 +3,7 @@ package pers.pluto.dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pers.pluto.domain.Account;
 
 import java.util.List;

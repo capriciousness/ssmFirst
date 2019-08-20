@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pers.pluto.domain.Account;
 import pers.pluto.service.AccountService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,5 +27,18 @@ public class AccountController {
         List<Account> list = accountService.findAll();
         model.addAttribute("list",list);
         return "list";
+    }
+
+
+    @RequestMapping("/save")
+    public void saveAccount(Account account, HttpServletRequest request, HttpServletResponse response){
+        System.out.println("表现层：保存账户执行...");
+        accountService.saveAccount(account);
+        try {
+            response.sendRedirect(request.getContextPath()+"findAll");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
     }
 }
